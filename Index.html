@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Card — HNG Stage 1a</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <article data-testid="test-todo-card" id="todo-card" aria-label="Task card">
+      <div class="card__glow" aria-hidden="true"></div>
+      <div class="card__grain" aria-hidden="true"></div>
+
+      <!-- Priority accent bar -->
+      <div
+        id="priority-indicator"
+        data-testid="test-todo-priority-indicator"
+        class="priority-indicator priority--high"
+        aria-hidden="true"
+      ></div>
+
+      <div class="card__inner">
+        <div id="view-mode">
+          <!-- Top row -->
+          <div class="card__top">
+            <div class="card__title-group">
+              <div class="checkbox-wrap">
+                <label for="todo-complete" class="sr-only"
+                  >Mark task as complete</label
+                >
+                <input
+                  type="checkbox"
+                  id="todo-complete"
+                  data-testid="test-todo-complete-toggle"
+                  aria-label="Mark task as complete"
+                />
+                <span class="checkmark" aria-hidden="true"></span>
+              </div>
+              <h2 data-testid="test-todo-title" id="todo-title">
+                Redesign the onboarding flow for mobile users
+              </h2>
+            </div>
+
+            <div class="card__actions">
+              <button
+                data-testid="test-todo-edit-button"
+                id="edit-btn"
+                class="icon-btn"
+                aria-label="Edit task"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"
+                  />
+                  <path
+                    d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
+                  />
+                </svg>
+              </button>
+              <button
+                data-testid="test-todo-delete-button"
+                class="icon-btn"
+                aria-label="Delete task"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                  <path d="M10 11v6M14 11v6" />
+                  <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Badges -->
+          <div class="card__badges">
+            <span
+              data-testid="test-todo-priority"
+              id="priority-badge"
+              class="badge badge--priority priority-badge--high"
+              aria-label="Priority: High"
+            >
+              <svg
+                width="8"
+                height="8"
+                viewBox="0 0 8 8"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <circle cx="4" cy="4" r="4" />
+              </svg>
+              High
+            </span>
+            <span
+              data-testid="test-todo-status"
+              id="status-badge"
+              class="badge status--in-progress"
+              aria-label="Status: In Progress"
+              >In Progress</span
+            >
+            <span
+              data-testid="test-todo-overdue-indicator"
+              id="overdue-indicator"
+              class="badge badge--overdue hidden"
+              aria-live="polite"
+              >⚠ Overdue</span
+            >
+          </div>
+
+          <!-- Status segmented control -->
+          <div class="status-control-wrap">
+            <span class="control-label" id="status-group-label">Status</span>
+            <div
+              class="segmented"
+              role="group"
+              aria-labelledby="status-group-label"
+            >
+              <button
+                class="seg-btn"
+                data-status="Pending"
+                data-testid="test-todo-status-control"
+                aria-pressed="false"
+              >
+                Pending
+              </button>
+              <button
+                class="seg-btn seg--active"
+                data-status="In Progress"
+                aria-pressed="true"
+              >
+                In Progress
+              </button>
+              <button class="seg-btn" data-status="Done" aria-pressed="false">
+                Done
+              </button>
+            </div>
+          </div>
+
+          <!-- Description + expand/collapse -->
+          <div class="description-wrap">
+            <p
+              data-testid="test-todo-description"
+              id="todo-description"
+              class="desc"
+            >
+              Audit the current mobile onboarding screens, identify key drop-off
+              points, and propose a simplified 3-step flow that improves
+              activation rate across iOS and Android. Coordinate with the
+              product and design teams to validate assumptions, run usability
+              tests on at least 5 participants, and deliver a high-fidelity
+              Figma prototype by end of sprint.
+            </p>
+
+            <section
+              data-testid="test-todo-collapsible-section"
+              id="collapsible-section"
+              class="collapsible-section"
+              aria-hidden="true"
+            ></section>
+
+            <button
+              data-testid="test-todo-expand-toggle"
+              id="expand-toggle"
+              class="expand-btn"
+              aria-expanded="false"
+              aria-controls="todo-description"
+            >
+              <span id="expand-label">Show more</span>
+              <svg
+                class="expand-icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="card__date-row">
+            <div class="date-left">
+              <span class="date-icon" aria-hidden="true">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </span>
+              <time
+                id="due-date-el"
+                data-testid="test-todo-due-date"
+                datetime="2026-04-18T18:00:00Z"
+                >Due Apr 18, 2026</time
+              >
+            </div>
+            <span
+              id="time-remaining-el"
+              data-testid="test-todo-time-remaining"
+              aria-live="polite"
+              >Calculating…</span
+            >
+          </div>
+
+          <ul data-testid="test-todo-tags" role="list" aria-label="Task tags">
+            <li data-testid="test-todo-tag-work"># work</li>
+            <li data-testid="test-todo-tag-urgent"># urgent</li>
+            <li># design</li>
+          </ul>
+        </div>
+
+        <div
+          id="edit-mode"
+          data-testid="test-todo-edit-form"
+          class="edit-form hidden"
+          role="form"
+          aria-label="Edit task"
+        >
+          <h3 class="edit-form__heading">Edit Task</h3>
+
+          <div class="form-group">
+            <label for="edit-title-input" class="form-label">Title</label>
+            <input
+              type="text"
+              id="edit-title-input"
+              data-testid="test-todo-edit-title-input"
+              class="form-input"
+              placeholder="Task title"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-desc-input" class="form-label">Description</label>
+            <textarea
+              id="edit-desc-input"
+              data-testid="test-todo-edit-description-input"
+              class="form-textarea"
+              rows="4"
+              placeholder="Task description"
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="edit-priority-select" class="form-label"
+                >Priority</label
+              >
+              <select
+                id="edit-priority-select"
+                data-testid="test-todo-edit-priority-select"
+                class="form-select"
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High" selected>High</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="edit-due-date-input" class="form-label"
+                >Due Date</label
+              >
+              <input
+                type="datetime-local"
+                id="edit-due-date-input"
+                data-testid="test-todo-edit-due-date-input"
+                class="form-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button
+              data-testid="test-todo-cancel-button"
+              id="cancel-btn"
+              class="btn btn--ghost"
+            >
+              Cancel
+            </button>
+            <button
+              data-testid="test-todo-save-button"
+              id="save-btn"
+              class="btn btn--primary"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <script src="script.js"></script>
+  </body>
+</html>
